@@ -1,23 +1,36 @@
-import os
-TAMANHO_MAXIMO = 11
-nomeArquivo = "trabalho"
+import os 
+from struct import *
+from funcoes import *	
+arquivo = "dados"
 
-class Pessoa:
-	def __init__(self,chave,nome,idade):
-		self.chave 	= chave
-		self.nome 	= nome
-		self.idade	= idade
-	
-	def getChave(self):
-		return self.chave
-	def getNome(self):
-		return self.nome
-	def getIdade(self):
-		return self.idade
 
 def main():
-	pessoa = Pessoa(20,"Euler Satnana",23)
-	print "Chave:",pessoa.getChave()
+	opcao = ''
+	while opcao != 'e':
+		opcao = raw_input()
+		if opcao == 'i':
+			chave = input()
+			nome  = raw_input()
+			idade = input()
+			pessoa = Pessoa(chave,nome,idade)
+			addArquivo(arquivo,hashFirst(pessoa.chave),pessoa)
+		elif opcao == 'c':
+				chave = input()
+				print vericarChave(arquivo,chave)
+		elif opcao == 'r':
+				chave = input()
+				print remove(arquivo,chave)
+		elif opcao == 'p':
+				imprimiArquivo(arquivo)
+		elif opcao == 't':
+				chave = input()
+				tentarInsercao(arquivo,chave)
+		elif opcao == 'm':
+			print "Media"
+
+
+
+
 
 if __name__== '__main__':
 	main()
